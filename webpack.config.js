@@ -2,14 +2,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./main.js",
+  entry: "./src/main.js",
   output: {
     path: path.join(__dirname, "/bundle"),
     filename: "index_bundle.js"
   },
   devServer: {
     inline: true,
-    port: 8001
+    port: 3000
   },
   module: {
     rules: [
@@ -20,12 +20,16 @@ module.exports = {
         query: {
           presets: ["es2015", "react"]
         }
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: "./public/index.html"
     })
   ]
 };
